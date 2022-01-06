@@ -28,16 +28,19 @@ public class BallMovement : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        ProcessInputs();
-
         _rigidbody.AddForce(_speed * Time.deltaTime * new Vector3(_horizontalMovement, 0, _verticalMovement));
 
         if (GroundCheck() && Input.GetKeyDown(KeyCode.Space))
         {
             _rigidbody.AddForce(Vector3.up * _jumpForce);
         }
+    }
+
+    private void Update()
+    {
+        ProcessInputs();
     }
 
     private bool GroundCheck()

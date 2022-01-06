@@ -5,8 +5,11 @@ using UnityEngine;
 
 public abstract class Panel : MonoBehaviour
 {
-    [SerializeField] protected GameObject MenuPanel;
-    [SerializeField] protected GameObject AuthorsPanel;
+    [SerializeField] private GameObject _menuPanel;
+    [SerializeField] private GameObject _authorsPanel;
+
+    public GameObject MenuPanel => _menuPanel;
+    public GameObject AuthorsPanel => _authorsPanel;
 
     protected void PanelActivator(GameObject firstPanel, GameObject secondPanel)
     {
