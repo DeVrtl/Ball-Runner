@@ -1,19 +1,33 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public abstract class Panel : MonoBehaviour
 {
-    [SerializeField] private GameObject _menuPanel;
-    [SerializeField] private GameObject _authorsPanel;
+    [SerializeField] private Panel _menuPanel;
+    [SerializeField] private Panel _authorsPanel;
 
-    public GameObject MenuPanel => _menuPanel;
-    public GameObject AuthorsPanel => _authorsPanel;
+    public Panel MenuPanel => _menuPanel;
+    public Panel AuthorsPanel => _authorsPanel;
 
-    protected void PanelActivator(GameObject firstPanel, GameObject secondPanel)
+    private void OnEnable()
     {
-        firstPanel.SetActive(false);
-        secondPanel.SetActive(true);
+        Validate();
+    }
+
+    public void Validate()
+    {
+        if (_menuPanel == null)
+            throw new InvalidOperationException();
+
+        if (_authorsPanel == null)
+            throw new InvalidOperationException();
+    }
+
+    protected void PanelActivator(Panel firstPanel, Panel secondPanel)
+    {
+        firstPanel.gameObject.SetActive(false);
+        secondPanel.gameObject.SetActive(true);
     }
 }

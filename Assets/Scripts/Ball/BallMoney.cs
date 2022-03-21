@@ -16,6 +16,7 @@ public class BallMoney : MonoBehaviour
             throw new ArgumentOutOfRangeException(nameof(amount));
         
         Money += amount;
+
         MoneyChanged?.Invoke(Money);
     }
 }

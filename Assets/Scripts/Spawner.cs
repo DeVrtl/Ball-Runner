@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _prefabs;
-    [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private List<Obstacle> _obstaclePrefabs;
+    [SerializeField] private List<Transform> _spawnPoints;
     [SerializeField] private float _secondsBetweenSpawn;
 
     private float _elapsedTime;
@@ -23,8 +24,8 @@ public class Spawner : MonoBehaviour
         {
             _elapsedTime = 0;
 
-            GameObject spawnPrefab = _prefabs[Random.Range(0, _prefabs.Length)];
-            Transform currentPointSpawn = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+            Obstacle spawnPrefab = _obstaclePrefabs[UnityEngine.Random.Range(0, _obstaclePrefabs.Count)];
+            Transform currentPointSpawn = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
 
             Instantiate(spawnPrefab, currentPointSpawn);
         }
